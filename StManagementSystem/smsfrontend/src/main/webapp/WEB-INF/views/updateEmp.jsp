@@ -1,0 +1,146 @@
+
+<%@page import="com.smsb.entities.User"%>
+<%
+User us = (User) session.getAttribute("user");
+
+if (us == null) {
+
+	response.sendRedirect("login");
+	return;
+}
+%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%@include file="./base.jsp"%>
+
+</head>
+<body>
+
+	<%@include file="../../shared/navbar.jsp"%>
+
+	<div class="d-flex">
+		<%@include file="../../shared/sidebar.jsp"%>
+
+
+		<div class="container">
+
+			<section class="p-3 p-md-4 p-xl-5">
+				<div class="container">
+					<div class="row">
+						<div class="col-12 col-md-6 bsb-tpl-bg-platinum">
+							<div
+								class="d-flex flex-column justify-content-between h-100 p-3 p-md-4 p-xl-5">
+								<h3 class="m-0">Voilaa!</h3>
+								<img class="img-fluid rounded mx-auto my-4" loading="lazy"
+									src="${img}/emp.jpg" width="500" height="80"
+									alt="BootstrapBrain Logo">
+							</div>
+						</div>
+						<div class="col-12 col-md-6 bsb-tpl-bg-lotion">
+							<div class="p-3 p-md-4 p-xl-5">
+								<div class="row">
+									<div class="col-12">
+										<div class="mb-5">
+											<h2 class="h3">UPDATE EMPLOYEE</h2>
+
+											<c:if test="${not empty sessionScope.msg}">
+												<div class="alert text-center ${sessionScope.msg.cssClass}"
+													role="alert">${sessionScope.msg.content}</div>
+												<c:remove var="msg" scope="session" />
+											</c:if>
+
+
+
+											<h3 class="fs-6 fw-normal text-secondary m-0">Update
+												your employees</h3>
+										</div>
+									</div>
+								</div>
+								<form:form action="${contextRoot}/updated" method="post"
+									modelAttribute="employee">
+
+									<div class="row gy-3 gy-md-4 overflow-hidden">
+
+										<div class="mb-3">
+											<input type="number" class="form-control" name="eid"
+												placeholder="Enter product name" hidden="hidden"
+												readonly="readonly" value="${employee.eid}"
+												id="exampleInputPassword1">
+										</div>
+										<div class="col-12">
+											<label for="name" class="form-label">Employee Name </label> <input
+												type="text" class="form-control ${nameClass} " name="name"
+												id="firstName" placeholder=" Name" value="${employee.name}" />
+											<div class="invalid-feedback">
+												<form:errors path="name" element="span" />
+											</div>
+
+										</div>
+										<div class="col-12">
+											<label for="email" class="form-label">Employee Email</label>
+											<input type="email" class="form-control ${emailClass }"
+												name="email" id="email" placeholder="name@example.com"
+												value="${employee.email}">
+											<div class="invalid-feedback">
+												<form:errors path="email" element="span" />
+											</div>
+
+										</div>
+										<div class="col-12">
+											<label for="phone" class="form-label">Mobile Number </label>
+											<input type="text" class="form-control ${phoneClass} "
+												name="phone" id="phone" placeholder=" mobile number"
+												value="${employee.phone}" />
+											<div class="invalid-feedback">
+												<form:errors path="phone" element="span" />
+											</div>
+
+										</div>
+										<div class="col-12">
+											<label for="jobTitle" class="form-label">Employee Job
+												Title </label> <input type="text" class="form-control ${jobClass} "
+												name="jobTitle" id="firstName" placeholder=" job title"
+												value="${employee.jobTitle}" />
+											<div class="invalid-feedback">
+												<form:errors path="jobTitle" element="span" />
+											</div>
+
+										</div>
+										<div class="col-12">
+											<label for="jobTitle" class="form-label">Employee
+												Department </label> <input type="text"
+												class="form-control ${departmentClass}" name="department"
+												id="deparatment" placeholder=" department"
+												value="${employee.department}" />
+											<div class="invalid-feedback">
+												<form:errors path="department" element="span" />
+											</div>
+
+										</div>
+										<div class="col-12"></div>
+										<div class="col-12">
+											<div class="d-grid">
+												<button class="btn bsb-btn-xl btn-primary" type="submit">Update
+													Employee</button>
+											</div>
+										</div>
+									</div>
+								</form:form>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+	</div>
+
+
+
+</body>
+
+
+</html>
