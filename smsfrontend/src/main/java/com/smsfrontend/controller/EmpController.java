@@ -100,7 +100,10 @@ public class EmpController {
 
 		employeeDao.deleteEmployee(eid);
 
-		return "redirect:/viewEmp";
+		User user = (User) session.getAttribute("user");
+		Long idLong = user.getId();
+
+		return "redirect:/viewEmp/" + idLong;
 
 	}
 
